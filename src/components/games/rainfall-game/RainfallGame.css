@@ -11,3 +11,10 @@
 .rain-canvas {
     display: block;
 }
+
+.hidden {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    padding-bottom: 1%;
+}
