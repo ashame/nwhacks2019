@@ -28,26 +28,21 @@ export default class InputManager {
             case KEY.W:
             case KEY.UP:
                 keys.up = value;
-                console.log(`key: ${e.keyCode}`)
                 break;
             case KEY.S:
             case KEY.DOWN:
                 keys.down = value;
-                console.log(`key: ${e.keyCode}`)
                 break;
             case KEY.A:
             case KEY.LEFT:
                 keys.left = value;
-                console.log(`key: ${e.keyCode}`)
                 break;
             case KEY.D:
             case KEY.RIGHT:
                 keys.right = value;
-                console.log(`key: ${e.keyCode}`)
                 break;
             case KEY.ENTER:
                 keys.enter = value;
-                console.log(`key: ${e.keyCode}`)
                 break;
             default: 
                 break;
