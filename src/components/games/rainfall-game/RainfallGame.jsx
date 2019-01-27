@@ -5,7 +5,6 @@ import InputManager from './InputManager';
 import GameObject from './obj/GameObject';
 
 import './RainfallGame.css';
-import kyp0 from './assets/kyp-0.png';
 
 const WIDTH = 800;
 const HEIGHT = 600;
@@ -29,6 +28,8 @@ class RainfallGame extends Component {
             },
             gameState: GameState.Start,
             rain: [],
+            bg: null,
+            kyp: null,
         }
         this.player = new GameObject({
             pos: {
@@ -36,7 +37,7 @@ class RainfallGame extends Component {
                 y: 550,
             },
             poly: {
-                width: 63,
+                width: 56,
                 height: 50,
             },
             velocity: 6,
@@ -45,11 +46,25 @@ class RainfallGame extends Component {
 
     componentDidMount() {
         const ctx = this.refs.raincanvas.getContext('2d');
-        const _kyp = this.refs.kyp;
+        
+        const kyp = new Image();
+        kyp.src = "https://imgur.com/e1qwjVW.png";
+        kyp.onload = () => {
+            this.setState({
+                kyp: kyp,
+            })
+        }
+
+        const bg = new Image();
+        bg.src = "https://imgur.com/KuTAA3A.png";
+        bg.onload = () => {
+            this.setState({
+                bg: bg,
+            })
+        }
 
         this.setState({
             ctx: ctx,
-            kyp: _kyp,
         });
         this.state.input.bindKeys();
 
@@ -128,9 +143,13 @@ class RainfallGame extends Component {
         const gameState = this.state.gameState;
         const ctx = this.state.ctx;
         const kyp = this.state.kyp;
+        const bg = this.state.bg;
         let rain = this.state.rain;
 
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
+
+        if (bg != null)
+            ctx.drawImage(bg, -1, -1, bg.width * 0.16, bg.height * 0.1856);
 
         if (gameState === GameState.Playing) {
 
@@ -168,8 +187,8 @@ class RainfallGame extends Component {
             }
 
             let player = this.player;
-            if (player != null) {
-                ctx.drawImage(kyp, player.pos.x, player.pos.y, kyp.width * 1, kyp.height * 1);
+            if (player != null && kyp != null) {
+                ctx.drawImage(kyp, player.pos.x, player.pos.y, kyp.width * 0.075, kyp.height * 0.075);
             }
             this.handlePlayerMovement(keys);
         }
@@ -184,7 +203,6 @@ class RainfallGame extends Component {
     render() {
         return (
             <div>
-                <img src={kyp0} ref="kyp" className="hidden" alt="kyp" height={50} />
                 <div className="board"
                     style={{
                         width: WIDTH,
