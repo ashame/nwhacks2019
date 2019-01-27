@@ -1,28 +1,31 @@
 .container {
-    overflow: hidden;
-    height: 92%;
+  overflow: hidden;
 }
 
 .kypW {
     position: fixed;
-    bottom: 15%;
-    left: 5%;    
+    bottom: 5%;
+    left: 3%;    
+    z-index: 1!important;  
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
 
 .sliding-background {
-  background: url("https://imgur.com/iNwnUjo.png") repeat-x;
-  top: -7px;
-  left: 0;
-  height: 92%;
-  position: absolute;
+  background: url('../../assets/city_bg_long.png') repeat-x;
+  height: 972px;
+  width: 9288px;
+  top: -45px;
   animation: slide 60s linear infinite;
-}
+  position: relative;
+  z-index: 0;
+} 
 
-@keyframes slide {
+@keyframes slide{
   0%{
     transform: translate3d(0, 0, 0);
   }
   100%{
-    transform: translate3d(-10320px, 0, 0); /* The image width */
+    transform: translate3d(-1692px, 0, 0);
   }
 }
