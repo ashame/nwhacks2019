@@ -23,7 +23,7 @@ class ProgressBarExample extends Component {
 
   render() {
     var pagesNoButton = [1,14,4,11,17];
-    var pagesNoButton = [1,4,17];;
+    var pagesNoButton = [1,4,14,17];;
     return (
       <div className="progressBar">
         <ProgressBar percentage={this.state.percentage} />
