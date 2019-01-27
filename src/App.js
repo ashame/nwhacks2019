@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Game from "./components/games/rainfall-game/Game";
+import {default as RainfallGame } from "./components/games/rainfall-game/RainfallGame";
 import './App.css';
 
 class App extends Component {
@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Game />
+          <RainfallGame />
         </header>
       </div>
     );
