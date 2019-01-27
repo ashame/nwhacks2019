@@ -1,0 +1,28 @@
+.container {
+    overflow: hidden;
+    height: 92%;
+}
+
+.kypW {
+    position: fixed;
+    bottom: 15%;
+    left: 5%;    
+}
+
+.sliding-background {
+  background: url("https://imgur.com/iNwnUjo.png") repeat-x;
+  top: -7px;
+  left: 0;
+  height: 92%;
+  position: absolute;
+  animation: slide 60s linear infinite;
+}
+
+@keyframes slide {
+  0%{
+    transform: translate3d(0, 0, 0);
+  }
+  100%{
+    transform: translate3d(-10320px, 0, 0); /* The image width */
+  }
+}

@@ -2,14 +2,105 @@ import React, { Component } from 'react';
 import { default as RainfallGame } from "./components/games/rainfall-game/RainfallGame";
 import { default as FroggerGame } from "./components/games/street-crossing/FroggerGame";
 import './App.css';
+import ProgressBarExample from './components/pages/ProgressBar';
+import StarField from './components/pages/StarField';
+import HomePage from './components/pages/homepage';
+import HideAndSeek from './components/pages/HideAndSeek'
+import ClickTheButton2 from './components/pages/ClickTheButton2'
+import WalkingScene from './components/pages/WalkingScene'
+import $ from 'jquery';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 1
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    $(document).ready(function () {
+      var audioElement = document.createElement('audio');
+      audioElement.setAttribute('src', 'http://www.kozco.com/tech/piano2-CoolEdit.mp3');
+
+      audioElement.addEventListener('ended', function () {
+        this.play();
+      }, true);
+
+      // audioElement.addEventListener("canplay",function(){
+      //     $("#length").text("Duration:" + audioElement.duration + " seconds");
+      //     $("#source").text("Source:" + audioElement.src);
+      //     $("#status").text("Status: Ready to play").css("color","green");
+      // });
+
+      // audioElement.addEventListener("timeupdate",function(){
+      //     $("#currentTime").text("Current second:" + audioElement.currentTime);
+      // });
+      audioElement.play();
+      // $('#play').click(function() {
+      //     audioElement.play();
+      //     $("#status").text("Status: Playing");
+      // });a
+
+      // $('#pause').click(function() {
+      //     audioElement.pause();
+      //     $("#status").text("Status: Paused");
+      // });
+
+      // $('#restart').click(function() {
+      //     audioElement.currentTime = 0;
+      // });
+    });
+  }
+
+  handleClick() {
+    var page = this.state.page;
+    var newPage = page + 1;
+    console.log(page);
+    console.log(newPage);
+    this.setState({
+      page: newPage
+    });
+  }
+
   render() {
+    var page = this.state.page
     return (
       <div className="App">
-        <header className="App-header">
-          {false ? <RainfallGame /> : <FroggerGame />}
-        </header>
+        <div className="App-header">
+
+          {/* <StarField/> */}
+          {                             
+            page === 1 ? (
+            <HomePage handleClick={this.handleClick} />
+          ) : page === 2 ? (
+            <StarField />
+          ) : page === 3 ? (
+            <HideAndSeek />
+          ) : page === 4 ? (
+            <ClickTheButton2 />
+          ) : page === 5 ? (
+            <WalkingScene />
+          ) : null}
+          {/* <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Edit <code>src/App.js</code> and save to reload
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a> */}
+        </div>
+        <div className="App-footer">
+          <p className="App-share">Share</p>
+          {/* <p>Progress bar</p> */}
+          <ProgressBarExample handleClick={this.handleClick} />
+        </div>
       </div>
     );
   }

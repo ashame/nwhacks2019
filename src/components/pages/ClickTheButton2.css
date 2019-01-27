@@ -1,0 +1,91 @@
+:root {
+  --button-height: 3rem;
+  --color-text: rgba(0,0,0,.25);
+  --color-text-shadow: rgba(255,255,255,.15);
+  --color-page-bg:#B9B5AA;
+  --color-bg:#899095;
+  --color-bg-light:#969DA3;
+  --color-bg-dark: #7D878F;
+  --color-overlay-light: rgba(255,255,255,.2);
+  --color-overlay-medium: rgba(0,0,0,.1);
+  --color-overlay-dark: rgba(0,0,0,.2);
+  --color-tab-focus: rgba(255,255,255,.15); }
+
+.red-button {
+  --color-bg:#E44E55;
+  --color-bg-light:#E47479;
+  --color-bg-dark:#D13239; }
+
+.green-button {
+  --color-bg:#00A07D;
+  --color-bg-light:#00AF8A;
+  --color-bg-dark:#008F70; }
+
+.blue-button {
+  --color-bg:#0066B4;
+  --color-bg-light:#3981CA;
+  --color-bg-dark:#004EAD; }
+
+.yellow-button {
+  --color-bg:#FFC054;
+  --color-bg-light:#FFD996;
+  --color-bg-dark:#F2AA30; }
+
+.retro-button {
+  position: relative;
+  appearance: none;
+  box-sizing: border-box;
+  font-size: calc( var(--button-height) / 3);
+  font-family: 'Open Sans', sans-serif;
+  background: var(--color-bg);
+  height: var(--button-height);
+  min-width: var(--button-height);
+  border-radius: calc( var(--button-height) / 2);
+  border: 0;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-text);
+  text-shadow: 1px 1px var(--color-text-shadow);
+  cursor: pointer;
+  margin: 6px 6px;
+  letter-spacing: .1em;
+  transition: all 200ms ease;
+  box-shadow: -1px -1px 1px var(--color-bg), 0 0 0 4px var(--color-overlay-medium), 1px 1px 1px var(--color-bg-dark), inset 0 0 0 var(--color-overlay-dark), inset 0.5rem 0.5rem 0.25rem var(--color-bg-light); }
+
+.retro-button::-moz-focus-inner {
+  outline: none;
+  border: none; }
+
+.retro-button:focus {
+  outline: none;
+  box-shadow: -1px -1px 1px var(--color-bg-dark), 0 0 0 4px var(--color-tab-focus), 1px 1px 1px var(--color-bg-dark), inset 0 0 0 var(--color-overlay-dark), inset 0.5rem 0.5rem 0.25rem var(--color-bg-light); }
+
+.retro-button:hover {
+  box-shadow: -1px -1px 1px var(--color-bg-dark), 0 0 0 4px var(--color-overlay-dark), 1px 1px 1px var(--color-bg-dark), inset 0 0 0 var(--color-overlay-dark), inset 0.5rem 0.5rem 0.25rem var(--color-bg-light); }
+
+.retro-button:active {
+  box-shadow: inset 1px 1px 1px var(--color-bg), 0 0 0 4px var(--color-overlay-dark), inset -1px -1px 1px var(--color-bg-light), inset 0.5rem 0.5rem 0.75rem var(--color-bg-dark), inset 0.5rem 0.5rem 0.5rem var(--color-bg-light); }
+
+.presentation-content {
+  text-align: center; }
+
+.presentation-title {
+  color: rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px rgba(255, 255, 255, 0.15);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-size: 1.5rem; }
+
+.top-button-group {
+  display: flex;
+  padding-bottom: 1rem; }
+  .top-button-group > * {
+    flex: 1; }
+
+.bottom-button-group {
+  background: var(--color-bg);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: -1px -1px 1px var(--color-bg-light), inset -1px -1px 1px var(--color-bg-dark); }
