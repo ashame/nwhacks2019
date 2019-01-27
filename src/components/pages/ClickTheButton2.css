@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 :root {
   --button-height: 3rem;
   --color-text: rgba(0,0,0,.25);
@@ -36,7 +37,7 @@
   appearance: none;
   box-sizing: border-box;
   font-size: calc( var(--button-height) / 3);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Press Start 2P', sans-serif;
   background: var(--color-bg);
   height: var(--button-height);
   min-width: var(--button-height);

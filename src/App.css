@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 
 html, body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #282c34; 
+  font-family: 'Press Start 2P', sans-serif;
+  background-image: linear-gradient(-45deg, #95005A, #1A006F);
   color:ghostwhite;
+
 }
 
 .App {
@@ -41,17 +43,22 @@ html, body {
 }
 
 .play {
-  font-family: 'Comic Sans MS';
+  font-family: 'Press Start 2P';
   font-size: 36px;
   text-decoration: none;
-  background: none;
-  border: none;
+  text-shadow: -5px 0 black, 0 5px black, 5px 0 black, 0 -5px black;
+  background: #4CAF50;
+  padding: 15px 32px;
+  border: 8px solid black;
+  border-radius: 8px;
   color: ghostwhite;
   margin-top: 10%;
   user-select: none;
   outline: none;
+  text-align: center;
 }
 
 .play:hover {
   color: rgba(255, 255 ,255, 0.7);
+  background-color: rgba(0,128,0, 1.0);
 }

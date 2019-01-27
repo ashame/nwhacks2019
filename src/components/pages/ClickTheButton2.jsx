@@ -16,12 +16,11 @@ class ClickTheButton2 extends Component {
     render() {
       return (
         <div className="presentation-content">
-            <p>What does this do?</p>
-            <button className="retro-button red-button">Arabic Text</button>
+            <p>Hmm... What does this button do?</p>
+            <button className="retro-button red-button">STOP HERE</button>
         </div>
       )
-    }  
+    }
   }
 
   export default ClickTheButton2;
-  
