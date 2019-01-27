@@ -46,7 +46,6 @@ class App extends Component {
   }
 
   render() {
-    
     var page = this.state.page
     return (
       <div className="App">
