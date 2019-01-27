@@ -15,7 +15,7 @@ class ProgressBarExample extends Component {
     if (this.state.percentage === 100)
       return
     this.setState({
-      percentage: this.state.percentage + 10
+      percentage: this.state.percentage + 6
     })
     this.props.handleClick();
   }

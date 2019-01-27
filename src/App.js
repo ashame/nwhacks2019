@@ -74,9 +74,7 @@ class App extends Component {
               <p>Gotta cross that highway doe</p>
             </div>
           ) : page === 10 ? (
-            <div>
-              <p>highway game</p>
-            </div>
+            <FroggerGame />
           ) : page === 11 ? (
             <PantingScene/>
           ) : page === 12 ? (
@@ -84,9 +82,7 @@ class App extends Component {
           ) : page === 13 ? (
             <RainGameStart/>
           ) : page === 14 ? (
-            <div>
-              <p>rain game</p>
-            </div>
+            <RainfallGame />
           ) : page === 15 ? (
             <div>
               <p>The rain is ineffective! Who knew?</p>
