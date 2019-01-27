@@ -8,6 +8,8 @@ import HideAndSeek from './HideAndSeek'
 import ClickTheButton from './ClickTheButton'
 import ClickTheButton2 from './ClickTheButton2'
 import WalkingScene from './WalkingScene'
+import Sound from 'react-sound';
+import $ from 'jquery';
 
 class App extends Component {
   constructor(props) {
@@ -16,6 +18,41 @@ class App extends Component {
       page:1
     };
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount(){
+    $(document).ready(function() {
+        var audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', 'http://www.kozco.com/tech/piano2-CoolEdit.mp3');
+        
+        audioElement.addEventListener('ended', function() {
+            this.play();
+        }, true);
+        
+        // audioElement.addEventListener("canplay",function(){
+        //     $("#length").text("Duration:" + audioElement.duration + " seconds");
+        //     $("#source").text("Source:" + audioElement.src);
+        //     $("#status").text("Status: Ready to play").css("color","green");
+        // });
+        
+        // audioElement.addEventListener("timeupdate",function(){
+        //     $("#currentTime").text("Current second:" + audioElement.currentTime);
+        // });
+        audioElement.play();
+        // $('#play').click(function() {
+        //     audioElement.play();
+        //     $("#status").text("Status: Playing");
+        // });a
+        
+        // $('#pause').click(function() {
+        //     audioElement.pause();
+        //     $("#status").text("Status: Paused");
+        // });
+        
+        // $('#restart').click(function() {
+        //     audioElement.currentTime = 0;
+        // });
+    });
   }
 
   handleClick() {
@@ -30,10 +67,10 @@ class App extends Component {
 
   render() { 
     var page = this.state.page
-
     return (
       <div className="App">
         <div className="App-header">
+
           {/* <StarField/> */}
           {page === 1 ? (
             <HomePage handleClick = {this.handleClick}/>
