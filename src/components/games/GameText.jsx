@@ -6,6 +6,7 @@ class GameText extends Component {
         return (
             <div>
                 <span className="centerScreen title">{this.props.title}</span>
+                <span className="centerScreen controls">{this.props.controls}</span>
                 <span className="centerScreen msg">{this.props.msg}</span>
             </div>
         );

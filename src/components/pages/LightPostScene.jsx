@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './LightPostScene.css';
+
 class LightPostScene extends Component {
 
     componentDidMount(){
@@ -16,7 +18,9 @@ class LightPostScene extends Component {
     render() {
       return (
         <div className="presentation-content">
-            <p>LightPostScene</p>
+
+            <img id="lampost" src={require('../../assets/new_kyp_streetlight.png')} alt="logo" width="1600"/>
+            <img id="kypLight" src={require('../../assets/export_kyp.png')} alt="logo"/>
         </div>
       )
     }  
