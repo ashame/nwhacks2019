@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Kyp1 from '../../assets/export_kyp.png';
 import Kyp2 from '../../assets/export_kyp2.png';
-import $ from 'jquery';
+// import $ from 'jquery';
 
-import './WalkingScene.css';
+import './PantingScene.css';
 
-class WalkingScene extends Component {
+class PantingScene extends Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -50,27 +50,21 @@ class WalkingScene extends Component {
 
     render() { 
         var s = this.state.s;
-        /*
-        $("#road").animate({
-            left: "-=1000"
-            // height: "toggle"
-          }, 150000, function() {
-            // Animation complete.
-          });*/
         return(
             <div className="container">
                 {/* <img className="sliding-background" id="road" style={{width: 'auto',height: '91%',top:'-2px',left:'0px',position: 'absolute'}} src={CityBG} alt="road"></img> */}
-                <div className="sliding-background" />
+                {/* <div className="sliding-background" /> */}
+                <p>Woo Hoo! *panting*</p>
                 { s === true ? (
                     <div>
-                        <img className="kypW" src={Kyp1} alt="kyp1" style={{width:'20%',height:'20%'}} />
+                        <img className="kypP" src={Kyp1} alt="kyp1" style={{width:'20%',height:'20%'}} />
                         {/* <p>
                         LampPostScene
                         </p> */}
                     </div>
                 ) : s === false ? (
                     <div>
-                        <img className="kypW" src={Kyp2} alt="kyp2" style={{width:'20%',height:'20%'}} />
+                        <img className="kypP" src={Kyp2} alt="kyp2" style={{width:'20%',height:'20%'}} />
                         {/* <p>
                         LampPostScene2
                         </p> */}
@@ -84,4 +78,4 @@ class WalkingScene extends Component {
     }
 }
 
-export default WalkingScene;
+export default PantingScene;

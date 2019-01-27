@@ -10,12 +10,12 @@
 }
 
 .sliding-background {
-  background: url("https://imgur.com/iNwnUjo.png") repeat-x;
+  background: url("https://imgur.com/iNwnUjo.png");
   top: -7px;
   left: 0;
   height: 92%;
   position: absolute;
-  animation: slide 60s linear infinite;
+  animation: slide 60s linear;
 }
 
 @keyframes slide {

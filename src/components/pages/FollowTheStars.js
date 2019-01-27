@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class StarField extends Component {
+class FollowTheStars extends Component {
 
     componentDidMount(){
         function Star(x,y,r,color){
@@ -79,7 +79,7 @@ class StarField extends Component {
             // context.fillRect(20, 20, 250, 80);
             context.fillStyle = "white";
             context.font = "30px Arial";
-            context.fillText("Earth this way ->", 35, 60);   
+            context.fillText("“Mom told me to follow the stars”", 35, 60);   
         }
         
         animate();
@@ -92,4 +92,4 @@ class StarField extends Component {
     }
 }
 
-export default StarField;
+export default FollowTheStars;
