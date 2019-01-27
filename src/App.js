@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {default as RainfallGame } from "./components/games/rainfall-game/RainfallGame";
+import { default as RainfallGame } from "./components/games/rainfall-game/RainfallGame";
+import { default as FroggerGame } from "./components/games/street-crossing/FroggerGame";
 import './App.css';
 
 class App extends Component {
@@ -7,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <RainfallGame />
+          <FroggerGame />
         </header>
       </div>
     );

@@ -4,12 +4,11 @@ import InputManager from '../InputManager';
 import { default as Title, default as Finish } from '../GameText';
 import GameObject from '../GameObject';
 
-import './RainfallGame.css';
+import './FroggerGame.css';
 
 const WIDTH = 800;
 const HEIGHT = 600;
 const CELL_SIZE = 25;
-var level = 1;
 
 const GameState = {
     Start: 0,
@@ -17,7 +16,7 @@ const GameState = {
     Finish: 2,
 }
 
-class RainfallGame extends Component {
+class FroggerGame extends Component {
     constructor() {
         super();
         this.state = {
@@ -27,7 +26,7 @@ class RainfallGame extends Component {
                 height: HEIGHT,
             },
             gameState: GameState.Start,
-            rain: [],
+            cars: [],
             bg: null,
             kyp: null,
         }
@@ -35,31 +34,23 @@ class RainfallGame extends Component {
             pos: {
                 x: 375,
                 y: 550,
-            },
+            }, 
             poly: {
                 width: 56,
-                height: 50,
+                height: 48,
             },
-            velocity: 6,
+            velocity: 5,
         });
     }
 
     componentDidMount() {
-        const ctx = this.refs.raincanvas.getContext('2d');
+        const ctx = this.refs.carcanvas.getContext('2d');
         
         const kyp = new Image();
         kyp.src = "https://imgur.com/e1qwjVW.png";
         kyp.onload = () => {
             this.setState({
                 kyp: kyp,
-            })
-        }
-
-        const bg = new Image();
-        bg.src = "https://imgur.com/KuTAA3A.png";
-        bg.onload = () => {
-            this.setState({
-                bg: bg,
             })
         }
 
@@ -75,29 +66,29 @@ class RainfallGame extends Component {
         this.state.input.unbindKeys();
     }
 
-    generateRain(count, velocity) {
-        let _rain = this.state.rain;
+    generateCars(count, velocity) {
+        let _cars = this.state.cars;
         for (let i = 0; i < count; i++) {
-            let rainDrop = new GameObject({
+            let car = new GameObject({ 
                 pos: {
                     x: Math.floor(Math.random() * WIDTH),
-                    y: Math.floor((Math.random() * HEIGHT) - HEIGHT),
+                    y: Math.floor((Math.random() * (HEIGHT / 50))) * 50,
                 },
-                velocity: velocity,
+                velocity: Math.random() > 0.5 ? velocity : -velocity,
                 poly: {
-                    width: 5,
-                    height: 5,
+                    width: 50,
+                    height: 50,
                 }
             })
-            _rain.push(rainDrop);
+            _cars.push(car);
         }
         this.setState({
-            rain: _rain,
+            cars: _cars,
         })
     }
 
     startGame() {
-        this.generateRain(15, 3);
+        this.generateCars(8, 4);
         this.setState({
             gameState: GameState.Playing,
         })
@@ -135,18 +126,11 @@ class RainfallGame extends Component {
             player.pos.x = player.pos.x - player.velocity < 0 ? 0 : player.pos.x - player.velocity;
         } else if (keys.right) {
             player.pos.x = player.pos.x + player.velocity > 750 ? 750 : player.pos.x + player.velocity;
+        } else if (keys.up) {
+            player.pos.y = player.pos.y - player.velocity < 0 ? 0 : player.pos.y - player.velocity;            
+        } else if (keys.down) {
+            player.pos.y = player.pos.y + player.velocity > 550 ? 550 : player.pos.y + player.velocity;
         }
-    }
-
-    checkRainPassTop(){
-        let rainDropArray = this.state.rain;
-
-        for (var i = 0; i < rainDropArray.length;i++){
-            if (rainDropArray[i].pos.y < 0){
-                return false;
-            }
-        }
-        return true;
     }
 
     repaint() {
@@ -155,52 +139,39 @@ class RainfallGame extends Component {
         const ctx = this.state.ctx;
         const kyp = this.state.kyp;
         const bg = this.state.bg;
-        let rain = this.state.rain;
+
+        let cars = this.state.cars;
 
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
-        if (bg != null)
-            ctx.drawImage(bg, -1, -1, bg.width * 0.16, bg.height * 0.1856);
+        if (bg != null) 
+            ctx.drawImage(bg, -1, -1);
 
         if (gameState === GameState.Playing) {
-
-            if (level < 5) {
-                // rain.length <= Math.ceil(level / 2)
-                if (this.checkRainPassTop()) {
-                    level++;
-                    this.generateRain(level === 5 ? level * 20 : level * 8, 3);
-                }
-            } else {
-                this.setState({
-                    gameState: GameState.Finish,
-                });
-            }
-
-            if (rain.length > 0) {
-                for (let i = 0; i < rain.length; i++) {
-                    if (rain[i].pos.y > HEIGHT) {
-                        rain.splice(i, 1);
+            if (cars.length > 0) {
+                for (let i = 0; i < cars.length; i++) {
+                    if (cars[i].pos.x < 0 || cars[i].pos.x > WIDTH) {
+                        cars.splice(i, 1);
                         continue;
                     }
-                    if (!this.checkCollision(rain[i])) {
-                        let _rain = rain[i].pos;
-                        ctx.moveTo(_rain.x, _rain.y);
-                        ctx.beginPath();
-                        ctx.arc(_rain.x + 3, _rain.y, 5, 0, 2 * Math.PI);
-                        ctx.closePath();
-                        ctx.stroke();
+                    if (!this.checkCollision(cars[i])) {
+                        let car = cars[i];
+                        ctx.moveTo(car.x, car.y);
                         ctx.fillStyle = "cyan";
-                        ctx.fill();
-                        rain[i].pos.y += rain[i].velocity;
+                        ctx.fillRect(car.pos.x, car.pos.y, car.poly.width, car.poly.height);
+                        car.pos.x += car.velocity;
                     } else {
-                        rain.splice(i, 1);
+                        cars.splice(i, 1);
                     }
                 }
             }
 
             let player = this.player;
-            if (player != null && kyp != null) {
-                ctx.drawImage(kyp, player.pos.x, player.pos.y, kyp.width * 0.075, kyp.height * 0.075);
+            if (player != null) {
+                if (kyp != null) 
+                    ctx.drawImage(kyp, player.pos.x, player.pos.y, kyp.width * 0.075, kyp.height * 0.075);
+                else 
+                    ctx.fillRect(player.pos.x, player.pos.y, player.poly.width, player.poly.height);
             }
             this.handlePlayerMovement(keys);
         }
@@ -218,17 +189,17 @@ class RainfallGame extends Component {
                 <div className="board"
                     style={{
                         width: WIDTH,
-                        height: HEIGHT,
+                        height: HEIGHT, 
                         backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
                     }}>
-                    {this.state.gameState === GameState.Start && <Title title="Welcome to Raincouver!" msg="Press Enter to Start!"/>}
-                    {this.state.gameState === GameState.Finish && <Finish title="Game Over!" msg="Turns out the rain was harmless..." />}
-                    <canvas className="rain-canvas" ref="raincanvas"
+                    {this.state.gameState === GameState.Start && <Title title="Cross the Street!" msg="Press Enter to Start!"/>}
+                    {this.state.gameState === GameState.Finish && <Finish title="Game Over!" msg="Phew, made it across safely" />}
+                    <canvas className="car-canvas" ref="carcanvas"
                         width={WIDTH} height={HEIGHT} />
-                </div>
+                    </div>
             </div>
         );
     }
 }
 
-export default RainfallGame;
+export default FroggerGame;
