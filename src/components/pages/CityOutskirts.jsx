@@ -8,7 +8,7 @@ class CityOutskirts extends Component {
         <div>
             <p>Kyp continues to follow the stars.</p>
 
-            <p>Clouds start to gather and it starts to rain.</p>
+            <p>Clouds start to gather and it begins to rain.</p>
 
             <p>“Ahhhh! Things are falling from the sky!”</p>
         </div>

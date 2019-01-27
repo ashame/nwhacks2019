@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Kyp1 from '../../assets/export_kyp.png';
-import Kyp2 from '../../assets/export_kyp2.png';
+import Kyp1 from '../../assets/new_kyp_walk_left.png';
+import Kyp2 from '../../assets/new_kyp_walk_left2.png';
 
 import './WalkingScene.css';
 

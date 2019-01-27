@@ -17,7 +17,7 @@ class ClickTheButton2 extends Component {
       return (
         <div className="presentation-content">
             <p>Hmm... What does this button do?</p>
-            <button className="retro-button red-button">STOP HERE</button>
+            <button className="retro-button red-button" onClick={this.props.handleClick}>EJECT</button>
         </div>
       )
     }

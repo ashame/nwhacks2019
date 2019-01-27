@@ -16,7 +16,7 @@ import SatelliteBeamDown from './components/pages/SatelliteBeamDown'
 import LightPostScene from './components/pages/LightPostScene'
 import FollowTheStars from './components/pages/FollowTheStars'
 import CityOutskirts from './components/pages/CityOutskirts'
-import RainGameStart from './components/pages/RainGameStart'
+import EndingScene from './components/pages/EndingScene'
 
 class App extends Component {
   constructor(props) {
@@ -25,6 +25,16 @@ class App extends Component {
       page: 1
     };
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    const audio = this.refs.audio;
+    audio.addEventListener('canplay', () => {
+        audio.play();
+    })
+    audio.addEventListener('ended', () => {
+        audio.play();
+    })
   }
 
   handleClick() {
@@ -36,9 +46,11 @@ class App extends Component {
   }
 
   render() {
+    
     var page = this.state.page
     return (
       <div className="App">
+        <audio ref="audio" src={require('./assets/Retro_Shine.mp3')} autoplay />
         <div className="App-header">
           {
             page === 1 ? (
@@ -48,50 +60,47 @@ class App extends Component {
           ) : page === 3 ? (
             <HideAndSeek />
           ) : page === 4 ? (
-            <ClickTheButton2 />
+            <ClickTheButton2 handleClick={this.handleClick}/>
           ) : page === 5 ? (
             <SatelliteBeamDown />
           ) : page === 6 ? (
-            <LightPostScene />
-          ) : page === 7 ? (
-            <FollowTheStars />
-          ) : page === 8 ? (
-            <WalkingScene />
-          ) : page === 9 ? (
             <div>
-              <p>Gotta cross that highway doe</p>
+              <p>Kyp is beamed down without his parents noticing. </p>
             </div>
+          ) : page === 7 ? (
+            <LightPostScene />
+          ) : page === 8 ? (
+            <FollowTheStars />
+          ) : page === 9 ? (
+            <WalkingScene />
           ) : page === 10 ? (
-            <FroggerGame />
+            <div>
+              <p>As Kyp continues through the city streets, he comes across a busy highway</p>
+            </div>
           ) : page === 11 ? (
-            <PantingScene/>
+            <FroggerGame handleClick={this.handleClick}/>
           ) : page === 12 ? (
-            <CityOutskirts/>
+            <PantingScene/>
           ) : page === 13 ? (
-            <RainGameStart/>
+            <CityOutskirts/>
           ) : page === 14 ? (
-            <RainfallGame />
+            <RainfallGame handleClick={this.handleClick} />
           ) : page === 15 ? (
             <div>
               <p>The rain is ineffective! Who knew?</p>
             </div>
           ) : page === 16 ? (
             <div>
-              <p>It's cooold! *b-br-brrr*</p>
-              <p>(Hide under a leaf for cover)</p>
+              <p>"It's c-co-cooold!" *b-br-brrr*</p>
+              <p>Kyp finds shelter under a leaf for the night</p>
+              <p>At sunrise, Kyp is reunited with his family!</p>
             </div>
           ) : page === 17 ? (
-            <div>
-              <p>Sunrise parents find you</p>
-            </div>
-          ) : page === 18 ? (
-            <div>
-              <p>The End!</p>
-            </div>
+            <EndingScene/>
           ) : null}
         </div>
         <div className="App-footer">
-          <ProgressBar handleClick={this.handleClick} />
+          <ProgressBar page={page} handleClick={this.handleClick} />
         </div>
       </div>
     );

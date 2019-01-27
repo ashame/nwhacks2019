@@ -45,6 +45,14 @@ class RainfallGame extends Component {
     }
 
     componentDidMount() {
+        const audio = this.refs.rain;
+        audio.addEventListener('canplay', () => {
+            audio.play();
+        })
+        audio.addEventListener('ended', () => {
+            audio.play();
+        })
+
         const ctx = this.refs.raincanvas.getContext('2d');
 
         const kyp = new Image();
@@ -214,14 +222,15 @@ class RainfallGame extends Component {
     render() {
         return (
             <div>
+                <audio ref="rain" src={require('../../../assets/Rain.mp3')} autoplay />
                 <div className="board"
                     style={{
                         width: WIDTH,
                         height: HEIGHT,
                         backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
                     }}>
-                    {this.state.gameState === GameState.Start && <Title title="Welcome to Raincouver!" msg="Press Enter to Start!" />}
-                    {this.state.gameState === GameState.Finish && <Finish title="Game Over!" msg="Turns out the rain was harmless..." />}
+                    {this.state.gameState === GameState.Start && <Title title="Dodge the rain!" controls="Use left and right arrow keys to move" msg="Press Enter to Start!" />}
+                    {this.state.gameState === GameState.Finish && <Finish title="Game Over!" msg="Turns out the rain was harmless..." /> && this.props.handleClick()}
                     <canvas className="rain-canvas" ref="raincanvas"
                         width={WIDTH} height={HEIGHT} />
                 </div>
