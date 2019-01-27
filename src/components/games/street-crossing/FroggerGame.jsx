@@ -17,7 +17,8 @@ const GameState = {
 }
 
 var level = 1;
-const colors = ["cyan", "green", "red"];
+
+const colors = ["green", "cyan", "red"];
 
 class FroggerGame extends Component {
     constructor() {
@@ -32,6 +33,9 @@ class FroggerGame extends Component {
             cars: [],
             bg: null,
             kyp: null,
+            grCar: null,
+            rdCar: null,
+            blCar: null,
         }
         this.player = new GameObject({
             pos: {
@@ -39,8 +43,8 @@ class FroggerGame extends Component {
                 y: 550,
             },
             poly: {
-                width: 56,
-                height: 48,
+                width: 93,
+                height: 50,
             },
             velocity: 3,
         });
@@ -54,6 +58,30 @@ class FroggerGame extends Component {
         kyp.onload = () => {
             this.setState({
                 kyp: kyp,
+            })
+        }
+
+        const grCar = new Image();
+        grCar.src = "https://imgur.com/IWX9F9q.png";
+        grCar.onload = () => {
+            this.setState({
+                grCar: grCar,
+            })
+        }
+
+        const rdCar = new Image();
+        rdCar.src = "https://imgur.com/tLpN20H.png";
+        rdCar.onload = () => {
+            this.setState({
+                rdCar: rdCar,
+            })
+        }
+
+        const blCar = new Image();
+        blCar.src = "https://imgur.com/BkaJ8Fc.png";
+        blCar.onload = () => {
+            this.setState({
+                blCar: blCar
             })
         }
 
@@ -75,11 +103,11 @@ class FroggerGame extends Component {
             let car = new GameObject({
                 pos: {
                     x: Math.floor(Math.random() * WIDTH),
-                    y: Math.floor((Math.random() * (HEIGHT / 50))) * 50,
+                    y: (Math.floor((Math.random() * (HEIGHT / 50))) * 50) - 50,
                 },
                 velocity: Math.random() > 0.5 ? velocity : -velocity,
                 poly: {
-                    width: 50,
+                    width: 101,
                     height: 50,
                 }
             })
@@ -145,6 +173,11 @@ class FroggerGame extends Component {
         const ctx = this.state.ctx;
         const kyp = this.state.kyp;
         const bg = this.state.bg;
+        const grCar = this.state.grCar;
+        const blCar = this.state.blCar;
+        const rdCar = this.state.rdCar;
+
+        const carImgs = [grCar, blCar, rdCar];
 
         let cars = this.state.cars;
 
@@ -162,12 +195,17 @@ class FroggerGame extends Component {
                         continue;
                     }
                     if (!this.checkCollision(cars[i])) {
+                        let carImg = carImgs[level - 1]
                         let car = cars[i];
-                        ctx.moveTo(car.x, car.y);
-                        ctx.fillStyle = colors[level - 1];
-                        ctx.fillRect(car.pos.x, car.pos.y, car.poly.width, car.poly.height);
+                        if (carImg == null) {
+                            ctx.moveTo(car.x, car.y);
+                            ctx.fillStyle = colors[level - 1];
+                            ctx.fillRect(car.pos.x, car.pos.y, car.poly.width, car.poly.height);
+                        } else {
+                            ctx.drawImage(carImg, car.pos.x, car.pos.y, car.poly.width * 1, car.poly.height * 1.17);
+                        }
                         car.pos.x += car.velocity;
-                    } 
+                    }
                 }
             }
 
