@@ -17,7 +17,6 @@ import LightPostScene from './components/pages/LightPostScene'
 import FollowTheStars from './components/pages/FollowTheStars'
 import CityOutskirts from './components/pages/CityOutskirts'
 import RainGameStart from './components/pages/RainGameStart'
-import $ from 'jquery';
 
 class App extends Component {
   constructor(props) {

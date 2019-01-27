@@ -8,8 +8,6 @@ class FollowTheStars extends Component {
             this.y = y;
             this.r = r;
             this.rChange = 0.015;
-            // this.vx = Math.floor(Math.random()*4+1);
-            // this.vy = Math.floor(Math.random()*4+1);
             this.color = color;
         }
         
@@ -59,24 +57,13 @@ class FollowTheStars extends Component {
         }
         function animate(){
           update();
-          /*
-            Remove comments below these for a cool trailing effect & comment
-            out the context.clearRect.
-          */
-            //context.fillStyle = 'rgba(255, 255, 255, .1)';
-            //context.fillRect(0,0,C_WIDTH,C_HEIGHT);
             context.clearRect(0,0,C_WIDTH,C_HEIGHT);
+
             for(var i = 0; i < arrStars.length; i++){
               arrStars[i].render();
             }
             requestAnimationFrame(animate);
-            // var grd = context.createLinearGradient(0, 0, 200, 0);
-            // grd.addColorStop(0, "blue");
-            // grd.addColorStop(1, "white");
-    
-            // Fill with gradient
-            // context.fillStyle = "white";
-            // context.fillRect(20, 20, 250, 80);
+
             context.fillStyle = "white";
             context.font = "30px Arial";
             context.fillText("“Mom told me to follow the stars”", 35, 60);   
