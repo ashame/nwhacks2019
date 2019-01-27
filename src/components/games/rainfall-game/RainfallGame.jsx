@@ -140,7 +140,6 @@ class RainfallGame extends Component {
 
     checkRainPassTop() {
         let rainDropArray = this.state.rain;
-
         for (var i = 0; i < rainDropArray.length; i++) {
             if (rainDropArray[i].pos.y < 0) {
                 return false;
@@ -165,7 +164,6 @@ class RainfallGame extends Component {
         if (gameState === GameState.Playing) {
 
             if (level < 5) {
-                // rain.length <= Math.ceil(level / 2)
                 if (this.checkRainPassTop()) {
                     level++;
                     this.generateRain(level === 5 ? level * 20 : level * 8, 3);

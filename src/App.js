@@ -26,11 +26,9 @@ class App extends Component {
     $(document).ready(function () {
       var audioElement = document.createElement('audio');
       audioElement.setAttribute('src', 'http://www.kozco.com/tech/piano2-CoolEdit.mp3');
-
       audioElement.addEventListener('ended', function () {
         this.play();
       }, true);
-
       // audioElement.addEventListener("canplay",function(){
       //     $("#length").text("Duration:" + audioElement.duration + " seconds");
       //     $("#source").text("Source:" + audioElement.src);

@@ -26,6 +26,7 @@
   font-family: 'Montserrat', sans-serif;
   cursor: pointer;
   outline: 0;
+  user-select: none;
 }
 
 .progressButton:hover {
