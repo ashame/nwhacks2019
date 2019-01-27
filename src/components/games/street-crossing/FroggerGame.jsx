@@ -16,6 +16,9 @@ const GameState = {
     Finish: 2,
 }
 
+var level = 1;
+const colors = ["cyan", "green", "red"];
+
 class FroggerGame extends Component {
     constructor() {
         super();
@@ -34,18 +37,18 @@ class FroggerGame extends Component {
             pos: {
                 x: 375,
                 y: 550,
-            }, 
+            },
             poly: {
                 width: 56,
                 height: 48,
             },
-            velocity: 5,
+            velocity: 3,
         });
     }
 
     componentDidMount() {
         const ctx = this.refs.carcanvas.getContext('2d');
-        
+
         const kyp = new Image();
         kyp.src = "https://imgur.com/e1qwjVW.png";
         kyp.onload = () => {
@@ -69,7 +72,7 @@ class FroggerGame extends Component {
     generateCars(count, velocity) {
         let _cars = this.state.cars;
         for (let i = 0; i < count; i++) {
-            let car = new GameObject({ 
+            let car = new GameObject({
                 pos: {
                     x: Math.floor(Math.random() * WIDTH),
                     y: Math.floor((Math.random() * (HEIGHT / 50))) * 50,
@@ -88,7 +91,7 @@ class FroggerGame extends Component {
     }
 
     startGame() {
-        this.generateCars(8, 4);
+        this.generateCars(8, 3.5);
         this.setState({
             gameState: GameState.Playing,
         })
@@ -124,11 +127,14 @@ class FroggerGame extends Component {
         let player = this.player;
         if (keys.left) {
             player.pos.x = player.pos.x - player.velocity < 0 ? 0 : player.pos.x - player.velocity;
-        } else if (keys.right) {
+        }
+        if (keys.right) {
             player.pos.x = player.pos.x + player.velocity > 750 ? 750 : player.pos.x + player.velocity;
-        } else if (keys.up) {
-            player.pos.y = player.pos.y - player.velocity < 0 ? 0 : player.pos.y - player.velocity;            
-        } else if (keys.down) {
+        }
+        if (keys.up) {
+            player.pos.y = player.pos.y - player.velocity < 0 ? 0 : player.pos.y - player.velocity;
+        }
+        if (keys.down) {
             player.pos.y = player.pos.y + player.velocity > 550 ? 550 : player.pos.y + player.velocity;
         }
     }
@@ -144,33 +150,44 @@ class FroggerGame extends Component {
 
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
-        if (bg != null) 
+        if (bg != null)
             ctx.drawImage(bg, -1, -1);
 
         if (gameState === GameState.Playing) {
             if (cars.length > 0) {
                 for (let i = 0; i < cars.length; i++) {
-                    if (cars[i].pos.x < 0 || cars[i].pos.x > WIDTH) {
-                        cars.splice(i, 1);
+                    let x = cars[i].pos.x;
+                    if (x < 0 || x > WIDTH) {
+                        cars[i].pos.x = x < 0 ? WIDTH : 0;
                         continue;
                     }
                     if (!this.checkCollision(cars[i])) {
                         let car = cars[i];
                         ctx.moveTo(car.x, car.y);
-                        ctx.fillStyle = "cyan";
+                        ctx.fillStyle = colors[level - 1];
                         ctx.fillRect(car.pos.x, car.pos.y, car.poly.width, car.poly.height);
                         car.pos.x += car.velocity;
-                    } else {
-                        cars.splice(i, 1);
-                    }
+                    } 
                 }
             }
 
             let player = this.player;
             if (player != null) {
-                if (kyp != null) 
+                if (player.pos.y === 0) {
+                    if (level < 3) {
+                        player.pos.y = 550;
+                        level++;
+                        cars.splice(0, cars.length);
+                        this.generateCars(8 + (1.7 * level), 2 + (1.2 * level));
+                    } else {
+                        this.setState({
+                            gameState: GameState.Finish,
+                        })
+                    }
+                }
+                if (kyp != null)
                     ctx.drawImage(kyp, player.pos.x, player.pos.y, kyp.width * 0.075, kyp.height * 0.075);
-                else 
+                else
                     ctx.fillRect(player.pos.x, player.pos.y, player.poly.width, player.poly.height);
             }
             this.handlePlayerMovement(keys);
@@ -189,14 +206,14 @@ class FroggerGame extends Component {
                 <div className="board"
                     style={{
                         width: WIDTH,
-                        height: HEIGHT, 
+                        height: HEIGHT,
                         backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
                     }}>
-                    {this.state.gameState === GameState.Start && <Title title="Cross the Street!" msg="Press Enter to Start!"/>}
+                    {this.state.gameState === GameState.Start && <Title title="Cross the Street!" msg="Press Enter to Start!" />}
                     {this.state.gameState === GameState.Finish && <Finish title="Game Over!" msg="Phew, made it across safely" />}
                     <canvas className="car-canvas" ref="carcanvas"
                         width={WIDTH} height={HEIGHT} />
-                    </div>
+                </div>
             </div>
         );
     }
