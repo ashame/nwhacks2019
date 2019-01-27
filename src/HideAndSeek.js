@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
-class pageTwo extends React.Component {
+class HideAndSeek extends Component {
 
     
     render() {
       return (
         <div>
-            <p>second page</p>
+          <p>HideAndSeek</p>
         </div>
       )
     }  
   }
 
-  export default pageTwo;
+  export default HideAndSeek;
   

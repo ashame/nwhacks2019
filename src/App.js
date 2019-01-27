@@ -4,6 +4,10 @@ import './App.css';
 import ProgressBarExample from './ProgressBar';
 import StarField from './StarField';
 import HomePage from './homepage';
+import HideAndSeek from './HideAndSeek'
+import ClickTheButton from './ClickTheButton'
+import ClickTheButton2 from './ClickTheButton2'
+import WalkingScene from './WalkingScene'
 
 class App extends Component {
   constructor(props) {
@@ -31,12 +35,16 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           {/* <StarField/> */}
-          {page == 1 ? (
+          {page === 1 ? (
             <HomePage handleClick = {this.handleClick}/>
-          ) : page == 2 ? (
-              <div>
-                <p>asdfa</p>
-              </div>
+          ) : page === 2 ? (
+            <StarField/>
+          ) : page === 3 ? (
+            <HideAndSeek/>
+          ) : page === 4 ? (
+            <ClickTheButton2/>
+          ) : page === 5 ? (
+            <WalkingScene/>
           ) : null}
           {/* <img src={logo} className="App-logo" alt="logo" />
           <p>

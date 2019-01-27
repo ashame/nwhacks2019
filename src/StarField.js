@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class StarField extends React.Component {
+class StarField extends Component {
 
     componentDidMount(){
         function Star(x,y,r,color){

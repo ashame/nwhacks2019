@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ProgressBar.css';
 
-class ProgressBarExample extends React.Component {
+class ProgressBarExample extends Component {
     constructor(props) {
       super(props)
       
