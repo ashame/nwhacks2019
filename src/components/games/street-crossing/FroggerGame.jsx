@@ -31,7 +31,6 @@ class FroggerGame extends Component {
             },
             gameState: GameState.Start,
             cars: [],
-            bg: null,
             kyp: null,
             grCar: null,
             rdCar: null,
@@ -43,7 +42,7 @@ class FroggerGame extends Component {
                 y: 550,
             },
             poly: {
-                width: 93,
+                width: 50,
                 height: 50,
             },
             velocity: 3,
@@ -138,12 +137,13 @@ class FroggerGame extends Component {
         let pw = player.poly.width;
         let ph = player.poly.height;
 
+        const ctx = this.state.ctx;
+
         if (ox >= px && ox + ow <= px + pw
             && oy >= py && oy + oh <= py + ph) {
             this.setState({
                 gameState: GameState.Finish,
             })
-            const ctx = this.state.ctx;
             ctx.clearRect(0, 0, WIDTH, HEIGHT);
             return true;
         } else {
@@ -172,7 +172,6 @@ class FroggerGame extends Component {
         const gameState = this.state.gameState;
         const ctx = this.state.ctx;
         const kyp = this.state.kyp;
-        const bg = this.state.bg;
         const grCar = this.state.grCar;
         const blCar = this.state.blCar;
         const rdCar = this.state.rdCar;
@@ -183,10 +182,8 @@ class FroggerGame extends Component {
 
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
-        if (bg != null)
-            ctx.drawImage(bg, -1, -1);
-
         if (gameState === GameState.Playing) {
+            let player = this.player;
             if (cars.length > 0) {
                 for (let i = 0; i < cars.length; i++) {
                     let x = cars[i].pos.x;
@@ -209,7 +206,6 @@ class FroggerGame extends Component {
                 }
             }
 
-            let player = this.player;
             if (player != null) {
                 if (player.pos.y === 0) {
                     if (level < 3) {

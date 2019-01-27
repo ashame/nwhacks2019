@@ -37,7 +37,7 @@ class RainfallGame extends Component {
                 y: 550,
             },
             poly: {
-                width: 56,
+                width: 50,
                 height: 50,
             },
             velocity: 6,
@@ -46,7 +46,7 @@ class RainfallGame extends Component {
 
     componentDidMount() {
         const ctx = this.refs.raincanvas.getContext('2d');
-        
+
         const kyp = new Image();
         kyp.src = "https://imgur.com/e1qwjVW.png";
         kyp.onload = () => {
@@ -138,11 +138,11 @@ class RainfallGame extends Component {
         }
     }
 
-    checkRainPassTop(){
+    checkRainPassTop() {
         let rainDropArray = this.state.rain;
 
-        for (var i = 0; i < rainDropArray.length;i++){
-            if (rainDropArray[i].pos.y < 0){
+        for (var i = 0; i < rainDropArray.length; i++) {
+            if (rainDropArray[i].pos.y < 0) {
                 return false;
             }
         }
@@ -171,9 +171,10 @@ class RainfallGame extends Component {
                     this.generateRain(level === 5 ? level * 20 : level * 8, 3);
                 }
             } else {
-                this.setState({
-                    gameState: GameState.Finish,
-                });
+                if (rain.length === 0)
+                    this.setState({
+                        gameState: GameState.Finish,
+                    });
             }
 
             if (rain.length > 0) {
@@ -221,7 +222,7 @@ class RainfallGame extends Component {
                         height: HEIGHT,
                         backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
                     }}>
-                    {this.state.gameState === GameState.Start && <Title title="Welcome to Raincouver!" msg="Press Enter to Start!"/>}
+                    {this.state.gameState === GameState.Start && <Title title="Welcome to Raincouver!" msg="Press Enter to Start!" />}
                     {this.state.gameState === GameState.Finish && <Finish title="Game Over!" msg="Turns out the rain was harmless..." />}
                     <canvas className="rain-canvas" ref="raincanvas"
                         width={WIDTH} height={HEIGHT} />
