@@ -47,7 +47,7 @@ class RainfallGame extends Component {
         const ctx = this.refs.raincanvas.getContext('2d');
         const _kyp = this.refs.kyp;
 
-        this.setState({ 
+        this.setState({
             ctx: ctx,
             kyp: _kyp,
         });
@@ -60,13 +60,13 @@ class RainfallGame extends Component {
         this.state.input.unbindKeys();
     }
 
-    generateRain(count, velocity) {        
+    generateRain(count, velocity) {
         let _rain = this.state.rain;
         for (let i = 0; i < count; i++) {
             let rainDrop = new GameObject({
                 pos: {
                     x: Math.floor(Math.random() * WIDTH),
-                    y: Math.floor((Math.random() * HEIGHT) - HEIGHT / 2),
+                    y: Math.floor((Math.random() * HEIGHT) - HEIGHT),
                 },
                 velocity: velocity,
                 poly: {
@@ -82,7 +82,7 @@ class RainfallGame extends Component {
     }
 
     startGame() {
-        this.generateRain(10, 1.6);
+        this.generateRain(15, 2);
         this.setState({
             gameState: GameState.Playing,
         })
@@ -103,15 +103,15 @@ class RainfallGame extends Component {
 
         if (ox >= px && ox + ow <= px + pw
             && oy >= py && oy + oh <= py + ph) {
-                this.setState({
-                    gameState: GameState.Finish,
-                })
-                const ctx = this.state.ctx;
-                ctx.clearRect(0, 0, WIDTH, HEIGHT);
-                return true;
-            } else {
-                return false;
-            }
+            this.setState({
+                gameState: GameState.Finish,
+            })
+            const ctx = this.state.ctx;
+            ctx.clearRect(0, 0, WIDTH, HEIGHT);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     handlePlayerMovement(keys) {
@@ -130,13 +130,20 @@ class RainfallGame extends Component {
         const kyp = this.state.kyp;
         let rain = this.state.rain;
 
-        if (level < 5) {
-
-        }
-
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
         if (gameState === GameState.Playing) {
+
+            if (level < 5) {
+                if (rain.length <= Math.ceil(level / 3)) {
+                    level++;
+                    this.generateRain(level === 5 ? level * 20 : level * 8, level >= 3 ? level * 0.8 : level === 5 ? 4 : 2);
+                }
+            } else {
+                this.setState({
+                    gameState: GameState.Finish,
+                });
+            }
 
             if (rain.length > 0) {
                 for (let i = 0; i < rain.length; i++) {
