@@ -14,6 +14,7 @@ const GameState = {
     Start: 0,
     Playing: 1,
     Finish: 2,
+    Fail: 3,
 }
 
 var level = 1;
@@ -134,30 +135,23 @@ class FroggerGame extends Component {
     }
 
     checkCollision(o) {
-        let player = this.player;
-
-        let ox = o.pos.x;
-        let oy = o.pos.y;
-        let ow = o.poly.width;
-        let oh = o.poly.height;
-
-        let px = player.pos.x;
-        let py = player.pos.y;
-        let pw = player.poly.width;
-        let ph = player.poly.height;
-
-        const ctx = this.state.ctx;
-
-        if (ox >= px && ox + ow <= px + pw
-            && oy >= py && oy + oh <= py + ph) {
-            this.setState({
-                gameState: GameState.Finish,
-            })
-            ctx.clearRect(0, 0, WIDTH, HEIGHT);
-            return true;
-        } else {
-            return false;
-        }
+       const ctx = this.state.ctx;
+       let player = this.player;
+       for (let x = o.pos.x; x < o.pos.x + o.poly.width; x++) {
+           for (let y = o.pos.y; y < o.pos.y + o.poly.height; y++) {
+               if (player.getBoundingRectangle().contains(x, y)) {
+                   this.setState({
+                       gameState: GameState.Fail,
+                       cars: [],
+                   })
+                   player.pos.x = 375;
+                   player.pos.y = 550;
+                   ctx.clearRect(0, 0, WIDTH, HEIGHT);
+                   return true;
+               }
+           }
+       }
+       return false;
     }
 
     handlePlayerMovement(keys) {
@@ -236,7 +230,7 @@ class FroggerGame extends Component {
             this.handlePlayerMovement(keys);
         }
 
-        if (gameState === GameState.Start && keys.enter) {
+        if ((gameState === GameState.Start || gameState === GameState.Fail) && keys.enter) {
             this.startGame();
         }
 
@@ -254,7 +248,8 @@ class FroggerGame extends Component {
                         backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
                     }}>
                     {this.state.gameState === GameState.Start && <Title title="Highway Crossing!" controls="Use arrow keys to move" msg="Press Enter to Start!" />}
-                    {this.state.gameState === GameState.Finish && <Finish title="Game Over!" msg="Phew, made it across safely" /> && this.props.handleClick()}
+                    {this.state.gameState === GameState.Fail && <Title title="Game Over!" controls="Kyp got in an accident!" msg="Press Enter to try again!" />}
+                    {this.state.gameState === GameState.Finish && this.props.handleClick()}
                     <canvas className="car-canvas" ref="carcanvas"
                         width={WIDTH} height={HEIGHT} />
                 </div>
