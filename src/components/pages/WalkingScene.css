@@ -1,26 +1,29 @@
 .container {
     overflow-x: hidden!important;
   }
-  
+
   .kypW {
       position: fixed;
       bottom: 5%;
-      left: 3%;    
-      z-index: 1!important;  
+      left: 3%;
+      z-index: 1!important;
       -webkit-transform: scaleX(-1);
       transform: scaleX(-1);
   }
-  
+
   .sliding-background {
-    background: url('../../assets/city_bg_long.png') repeat-x;
-    height: 2080px;
-    width: 9288px;
-    top: 30px;
+    background: url('../../assets/1000_bg.png') repeat-x;
+    height: 1100px;
+    width: 9000px;
     animation: slide 60s linear infinite;
     position: relative;
     z-index: 0;
-  } 
-  
+  }
+  .background {
+      background-color: black;
+      background: black;
+  }
+
   @keyframes slide{
     0%{
       transform: translate3d(0, 0, 0);
@@ -28,4 +31,4 @@
     100%{
       transform: translate3d(-3692px, 0, 0);
     }
-  } 
+  }

@@ -15,20 +15,20 @@ class FollowTheStars extends Component {
 
         Star.prototype = {
             constructor: Star,
-            render: function () {
-                context.beginPath();
-                context.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
-                context.shadowBlur = 8;
-                context.shadowColor = "white";
-                context.fillStyle = this.color;
-                context.fill();
+            render: function(){
+              context.beginPath();
+              context.arc(this.x, this.y, this.r, 0, 2*Math.PI, false);
+              context.shadowBlur = 8;
+              context.shadowColor = "white";
+              context.fillStyle = this.color;
+              context.fill();
             },
-            update: function () {
+            update: function(){
 
-                if (this.r > 2 || this.r < .8) {
-                    this.rChange = - this.rChange;
-                }
-                this.r += this.rChange;
+               if (this.r > 2 || this.r < .8){
+                   this.rChange = - this.rChange;
+               }
+               this.r += this.rChange;
             }
         }
 
@@ -65,16 +65,17 @@ class FollowTheStars extends Component {
                 arrStars[i].render();
             }
             requestAnimationFrame(animate);
+
+            context.fillStyle = "white";
+            context.font = "30px 'Press Start 2P'";
+            context.fillText("“Mom told me to follow the stars”", canvas.height / 4, canvas.height / 2);
         }
 
         animate();
     }
-    render() {
-        return (
-            <div>
-                <canvas id="canvas" style={{ background: "black", position: "absolute" }}></canvas>
-                <div id="followStars">Mom told me to follow the stars...</div>
-            </div>
+    render(){
+        return(
+        <canvas id="canvas" style={{background: "black",position: "absolute"}}></canvas>
         )
     }
 }

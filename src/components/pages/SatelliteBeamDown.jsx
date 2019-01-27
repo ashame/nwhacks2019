@@ -19,8 +19,7 @@ class SatelliteBeamDown extends Component {
             <p>Satellite Beam Down</p>
         </div>
       )
-    }  
+    }
   }
 
   export default SatelliteBeamDown;
-  
