@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class LightPostScene extends Component {
+class SatelliteBeamDown extends Component {
 
     componentDidMount(){
 
@@ -16,11 +16,11 @@ class LightPostScene extends Component {
     render() {
       return (
         <div className="presentation-content">
-            <img src={require('../../assets/new_kyp_streetlight.png')} alt="logo" height="1366" />
+            <p>Satellite Beam Down</p>
         </div>
       )
     }  
   }
 
-  export default LightPostScene;
+  export default SatelliteBeamDown;
   
