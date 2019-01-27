@@ -97,7 +97,7 @@ class RainfallGame extends Component {
     }
 
     startGame() {
-        this.generateRain(15, 2);
+        this.generateRain(15, 3);
         this.setState({
             gameState: GameState.Playing,
         })
@@ -138,6 +138,17 @@ class RainfallGame extends Component {
         }
     }
 
+    checkRainPassTop(){
+        let rainDropArray = this.state.rain;
+
+        for (var i = 0; i < rainDropArray.length;i++){
+            if (rainDropArray[i].pos.y < 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
     repaint() {
         const keys = this.state.input.pressedKeys;
         const gameState = this.state.gameState;
@@ -154,9 +165,10 @@ class RainfallGame extends Component {
         if (gameState === GameState.Playing) {
 
             if (level < 5) {
-                if (rain.length <= Math.ceil(level / 3)) {
+                // rain.length <= Math.ceil(level / 2)
+                if (this.checkRainPassTop()) {
                     level++;
-                    this.generateRain(level === 5 ? level * 20 : level * 8, level >= 3 ? level * 0.8 : level === 5 ? 4 : 2);
+                    this.generateRain(level === 5 ? level * 20 : level * 8, 3);
                 }
             } else {
                 this.setState({
