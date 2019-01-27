@@ -1,12 +1,8 @@
 .progress-bar {
-  position: relative;
-  /* align-content:center; */
-  margin:auto;
-  top:30px;
-  height: 20px;
-  width: 350px;
-  border-radius: 50px;
-  border: 1px solid #333;
+  position: absolute;
+  bottom: 0;
+  height: 10px;
+  width: 100%;
 }
 
 .filler {
@@ -17,20 +13,24 @@
 }
 
 .progressButton {
-  /* margin-right: 10px; */
   position:absolute;
   float:right;
-  right:30px;
-  padding: 7px 12px;
+  right:10px;
+  bottom: 20px;
+  padding: 8px 15px;
   font-size: 14px;
 
-  background: #d14836;
+  background: rgba(182, 62, 152, 0.479);
+  border-radius: 18px;
   color: white;
   font-family: 'Montserrat', sans-serif;
   cursor: pointer;
   outline: 0;
 }
 
+.progressButton:hover {
+  background: rgba(182, 62, 152, 0.679);
+}
 /* .progressButton {
     position:relative;
     top:50px;

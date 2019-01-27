@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import './ClickTheButton.css';
+import './ClickTheButton2.css';
 
-class ClickTheButton extends Component {
+class ClickTheButton2 extends Component {
 
     componentDidMount(){
-
         // // $('.btn').prepend('<div class="hover"><span></span><span></span><span></span><span></span><span></span></div>');
         // var theParent = document.getElementById("theParent");
 
@@ -16,12 +15,13 @@ class ClickTheButton extends Component {
 
     render() {
       return (
-        <div>
-          <a href="#" className="btnClicker red">Red</a>
+        <div className="presentation-content">
+            <p>What does this do?</p>
+            <button className="retro-button red-button">Garbage Chute</button>
         </div>
       )
     }  
   }
 
-  export default ClickTheButton;
+  export default ClickTheButton2;
   

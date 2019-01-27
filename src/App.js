@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { default as RainfallGame } from "./components/games/rainfall-game/RainfallGame";
-import { default as FroggerGame } from "./components/games/street-crossing/FroggerGame";
 import './App.css';
-import ProgressBarExample from './components/pages/ProgressBar';
+
+import { default as ProgressBar } from './components/pages/ProgressBar';
 import StarField from './components/pages/StarField';
-import HomePage from './components/pages/homepage';
+import HomePage from './components/pages/HomePage';
 import HideAndSeek from './components/pages/HideAndSeek'
 import ClickTheButton2 from './components/pages/ClickTheButton2'
 import WalkingScene from './components/pages/WalkingScene'
+
+import { default as RainfallGame } from "./components/games/rainfall-game/RainfallGame";
+import { default as FroggerGame } from "./components/games/street-crossing/FroggerGame";
+
 import $ from 'jquery';
 
 class App extends Component {
@@ -57,8 +60,6 @@ class App extends Component {
   handleClick() {
     var page = this.state.page;
     var newPage = page + 1;
-    console.log(page);
-    console.log(newPage);
     this.setState({
       page: newPage
     });
@@ -69,37 +70,25 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-
-          {/* <StarField/> */}
-          {                             
+          {
             page === 1 ? (
-            <HomePage handleClick={this.handleClick} />
-          ) : page === 2 ? (
-            <StarField />
-          ) : page === 3 ? (
-            <HideAndSeek />
-          ) : page === 4 ? (
-            <ClickTheButton2 />
-          ) : page === 5 ? (
-            <WalkingScene />
-          ) : null}
-          {/* <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a> */}
+              <HomePage handleClick={this.handleClick} />
+            ) : page === 2 ? (
+              <StarField />
+            ) : page === 3 ? (
+              <HideAndSeek />
+            ) : page === 4 ? (
+              <ClickTheButton2 />
+            ) : page === 5 ? (
+              <WalkingScene />
+            ) : page === 6 ? (
+              <RainfallGame />
+            ) : page === 7 ? (
+              <FroggerGame />
+            ) : null}
         </div>
         <div className="App-footer">
-          <p className="App-share">Share</p>
-          {/* <p>Progress bar</p> */}
-          <ProgressBarExample handleClick={this.handleClick} />
+          <ProgressBar handleClick={this.handleClick} />
         </div>
       </div>
     );

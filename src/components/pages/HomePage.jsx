@@ -4,8 +4,8 @@ class HomePage extends Component {
     render() { 
         return(
             <div>
-                <p>
-                Blank is a story about finding home
+                <p class="logo">
+                    Blank is a story about finding home
                 </p>
                 <button onClick={this.props.handleClick}>Play</button>
             </div>
