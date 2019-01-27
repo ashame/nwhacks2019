@@ -6,7 +6,7 @@ class HideAndSeek extends Component {
     render() {
       return (
         <div>
-          <p>HideAndSeek</p>
+          <p>“Baby Kyp and his family were travelling to Earth to do some grocery shopping when he stumbles upon a button…”</p>
         </div>
       )
     }  

@@ -11,6 +11,12 @@ import WalkingScene from './components/pages/WalkingScene'
 import { default as RainfallGame } from "./components/games/rainfall-game/RainfallGame";
 import { default as FroggerGame } from "./components/games/street-crossing/FroggerGame";
 
+import PantingScene from './components/pages/PantingScene'
+import SatelliteBeamDown from './components/pages/SatelliteBeamDown'
+import LightPostScene from './components/pages/LightPostScene'
+import FollowTheStars from './components/pages/FollowTheStars'
+import CityOutskirts from './components/pages/CityOutskirts'
+import RainGameStart from './components/pages/RainGameStart'
 import $ from 'jquery';
 
 class App extends Component {
@@ -29,29 +35,7 @@ class App extends Component {
       audioElement.addEventListener('ended', function () {
         this.play();
       }, true);
-      // audioElement.addEventListener("canplay",function(){
-      //     $("#length").text("Duration:" + audioElement.duration + " seconds");
-      //     $("#source").text("Source:" + audioElement.src);
-      //     $("#status").text("Status: Ready to play").css("color","green");
-      // });
-
-      // audioElement.addEventListener("timeupdate",function(){
-      //     $("#currentTime").text("Current second:" + audioElement.currentTime);
-      // });
       audioElement.play();
-      // $('#play').click(function() {
-      //     audioElement.play();
-      //     $("#status").text("Status: Playing");
-      // });a
-
-      // $('#pause').click(function() {
-      //     audioElement.pause();
-      //     $("#status").text("Status: Paused");
-      // });
-
-      // $('#restart').click(function() {
-      //     audioElement.currentTime = 0;
-      // });
     });
   }
 
@@ -70,20 +54,57 @@ class App extends Component {
         <div className="App-header">
           {
             page === 1 ? (
-              <HomePage handleClick={this.handleClick} />
-            ) : page === 2 ? (
-              <StarField />
-            ) : page === 3 ? (
-              <HideAndSeek />
-            ) : page === 4 ? (
-              <ClickTheButton2 />
-            ) : page === 5 ? (
-              <WalkingScene />
-            ) : page === 6 ? (
-              <RainfallGame />
-            ) : page === 7 ? (
-              <FroggerGame />
-            ) : null}
+            <HomePage handleClick={this.handleClick} />
+          ) : page === 2 ? (
+            <StarField />
+          ) : page === 3 ? (
+            <HideAndSeek />
+          ) : page === 4 ? (
+            <ClickTheButton2 />
+          ) : page === 5 ? (
+            <SatelliteBeamDown />
+          ) : page === 6 ? (
+            <LightPostScene />
+          ) : page === 7 ? (
+            <FollowTheStars />
+          ) : page === 8 ? (
+            <WalkingScene />
+          ) : page === 9 ? (
+            <div>
+              <p>Gotta cross that highway doe</p>
+            </div>
+          ) : page === 10 ? (
+            <div>
+              <p>highway game</p>
+            </div>
+          ) : page === 11 ? (
+            <PantingScene/>
+          ) : page === 12 ? (
+            <CityOutskirts/>
+          ) : page === 13 ? (
+            <RainGameStart/>
+          ) : page === 14 ? (
+            <div>
+              <p>rain game</p>
+            </div>
+          ) : page === 15 ? (
+            <div>
+              <p>The rain is ineffective! Who knew?</p>
+            </div>
+          ) : page === 16 ? (
+            <div>
+              <p>It's cooold! *b-br-brrr*</p>
+              <p>(Hide under a leaf for cover)</p>
+            </div>
+          ) : page === 17 ? (
+            <div>
+              <p>Sunrise parents find you</p>
+            </div>
+          ) : page === 18 ? (
+            <div>
+              <p>The End!</p>
+            </div>
+          ) : null}
         </div>
         <div className="App-footer">
           <ProgressBar handleClick={this.handleClick} />
