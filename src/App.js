@@ -50,7 +50,7 @@ class App extends Component {
     var page = this.state.page
     return (
       <div className="App">
-        <audio ref="audio" src={require('./assets/Retro_Shine.mp3')} autoplay />
+        <audio ref="audio" src={require('./assets/Retro_Shine.mp3')} autoPlay />
         <div className="App-header">
           {
             page === 1 ? (
