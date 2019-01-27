@@ -6,12 +6,6 @@ html, body {
   color:ghostwhite;
 }
 
-.logo {
-  background-image: url("https://imgur.com/JnIzhMG.png");
-  width: 100%;
-  height: auto;
-}
-
 .App {
   text-align: center;
 }
@@ -38,4 +32,25 @@ html, body {
   background: none;
   align-items: center;
   justify-content: center;
+}
+
+.logo {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.play {
+  font-family: 'Comic Sans MS';
+  font-size: 36px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  color: ghostwhite;
+  margin-top: 10%;
+  user-select: none;
+  outline: none;
+}
+
+.play:hover {
+  color: rgba(255, 255 ,255, 0.7);
 }
