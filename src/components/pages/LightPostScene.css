@@ -1,0 +1,14 @@
+#lampost {
+    display: block;
+    z-index: 0;
+}
+
+#kypLight {
+    /* float: left; */
+    position: absolute;
+    top: 0;
+    width: 300px;
+    margin-top: 43%;
+    margin-left:12%;
+    z-index: 1!important;
+}

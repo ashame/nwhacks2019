@@ -13,8 +13,14 @@
     font-size: 36px;
 }
 
+.controls {
+    top: 52%;
+    color: white;
+    font-size: 20px;
+}
+
 .msg {
-    top: 50%;
+    top: 60%;
     color: white;
     font-size: 20px;
 }

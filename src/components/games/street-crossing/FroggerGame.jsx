@@ -243,7 +243,7 @@ class FroggerGame extends Component {
                         height: HEIGHT,
                         backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
                     }}>
-                    {this.state.gameState === GameState.Start && <Title title="Cross the Street!" msg="Press Enter to Start!" />}
+                    {this.state.gameState === GameState.Start && <Title title="Cross the Street!" controls="Use directional keys to cross the street!" msg="Press Enter to Start!" />}
                     {this.state.gameState === GameState.Finish && <Finish title="Game Over!" msg="Phew, made it across safely" />}
                     <canvas className="car-canvas" ref="carcanvas"
                         width={WIDTH} height={HEIGHT} />
