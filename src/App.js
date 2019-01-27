@@ -1,13 +1,44 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ProgressBarExample from './ProgressBar';
+import StarField from './StarField';
+import HomePage from './homepage';
 
 class App extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      page:1
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    var page = this.state.page;
+    var newPage = page + 1;
+    console.log(page);
+    console.log(newPage);
+    this.setState({
+        page: newPage
+    });
+  }
+
+  render() { 
+    var page = this.state.page
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+        <div className="App-header">
+          {/* <StarField/> */}
+          {page == 1 ? (
+            <HomePage handleClick = {this.handleClick}/>
+          ) : page == 2 ? (
+              <div>
+                <p>asdfa</p>
+              </div>
+          ) : null}
+          {/* <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload
           </p>
@@ -18,8 +49,13 @@ class App extends Component {
             rel="noopener noreferrer"
           >
             Learn React
-          </a>
-        </header>
+          </a> */}
+          <div className="App-footer">
+            <p className="App-share">Share</p>
+            {/* <p>Progress bar</p> */}
+            <ProgressBarExample handleClick={this.handleClick}/>
+          </div>
+        </div>
       </div>
     );
   }
