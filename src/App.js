@@ -1,57 +1,54 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import ProgressBarExample from './ProgressBar';
-import StarField from './StarField';
-import HomePage from './homepage';
-import HideAndSeek from './HideAndSeek'
-import ClickTheButton from './ClickTheButton'
-import ClickTheButton2 from './ClickTheButton2'
-import WalkingScene from './WalkingScene'
-import Sound from 'react-sound';
+import ProgressBarExample from './components/pages/ProgressBar';
+import StarField from './components/pages/StarField';
+import HomePage from './components/pages/homepage';
+import HideAndSeek from './components/pages/HideAndSeek'
+import ClickTheButton2 from './components/pages/ClickTheButton2'
+import WalkingScene from './components/pages/WalkingScene'
 import $ from 'jquery';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      page:1
+    this.state = {
+      page: 1
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount(){
-    $(document).ready(function() {
-        var audioElement = document.createElement('audio');
-        audioElement.setAttribute('src', 'http://www.kozco.com/tech/piano2-CoolEdit.mp3');
-        
-        audioElement.addEventListener('ended', function() {
-            this.play();
-        }, true);
-        
-        // audioElement.addEventListener("canplay",function(){
-        //     $("#length").text("Duration:" + audioElement.duration + " seconds");
-        //     $("#source").text("Source:" + audioElement.src);
-        //     $("#status").text("Status: Ready to play").css("color","green");
-        // });
-        
-        // audioElement.addEventListener("timeupdate",function(){
-        //     $("#currentTime").text("Current second:" + audioElement.currentTime);
-        // });
-        audioElement.play();
-        // $('#play').click(function() {
-        //     audioElement.play();
-        //     $("#status").text("Status: Playing");
-        // });a
-        
-        // $('#pause').click(function() {
-        //     audioElement.pause();
-        //     $("#status").text("Status: Paused");
-        // });
-        
-        // $('#restart').click(function() {
-        //     audioElement.currentTime = 0;
-        // });
+  componentDidMount() {
+    $(document).ready(function () {
+      var audioElement = document.createElement('audio');
+      audioElement.setAttribute('src', 'http://www.kozco.com/tech/piano2-CoolEdit.mp3');
+
+      audioElement.addEventListener('ended', function () {
+        this.play();
+      }, true);
+
+      // audioElement.addEventListener("canplay",function(){
+      //     $("#length").text("Duration:" + audioElement.duration + " seconds");
+      //     $("#source").text("Source:" + audioElement.src);
+      //     $("#status").text("Status: Ready to play").css("color","green");
+      // });
+
+      // audioElement.addEventListener("timeupdate",function(){
+      //     $("#currentTime").text("Current second:" + audioElement.currentTime);
+      // });
+      audioElement.play();
+      // $('#play').click(function() {
+      //     audioElement.play();
+      //     $("#status").text("Status: Playing");
+      // });a
+
+      // $('#pause').click(function() {
+      //     audioElement.pause();
+      //     $("#status").text("Status: Paused");
+      // });
+
+      // $('#restart').click(function() {
+      //     audioElement.currentTime = 0;
+      // });
     });
   }
 
@@ -61,27 +58,28 @@ class App extends Component {
     console.log(page);
     console.log(newPage);
     this.setState({
-        page: newPage
+      page: newPage
     });
   }
 
-  render() { 
+  render() {
     var page = this.state.page
     return (
       <div className="App">
         <div className="App-header">
 
           {/* <StarField/> */}
-          {page === 1 ? (
-            <HomePage handleClick = {this.handleClick}/>
+          {                             
+            page === 1 ? (
+            <HomePage handleClick={this.handleClick} />
           ) : page === 2 ? (
-            <StarField/>
+            <StarField />
           ) : page === 3 ? (
-            <HideAndSeek/>
+            <HideAndSeek />
           ) : page === 4 ? (
-            <ClickTheButton2/>
+            <ClickTheButton2 />
           ) : page === 5 ? (
-            <WalkingScene/>
+            <WalkingScene />
           ) : null}
           {/* <img src={logo} className="App-logo" alt="logo" />
           <p>
@@ -95,11 +93,11 @@ class App extends Component {
           >
             Learn React
           </a> */}
-          <div className="App-footer">
-            <p className="App-share">Share</p>
-            {/* <p>Progress bar</p> */}
-            <ProgressBarExample handleClick={this.handleClick}/>
-          </div>
+        </div>
+        <div className="App-footer">
+          <p className="App-share">Share</p>
+          {/* <p>Progress bar</p> */}
+          <ProgressBarExample handleClick={this.handleClick} />
         </div>
       </div>
     );

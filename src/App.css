@@ -35,6 +35,8 @@ html, body {
   height:90px;
   width:100%;
   background: grey;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-share {

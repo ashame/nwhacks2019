@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Kyp1 from './assets/export_kyp.png';
-import Kyp2 from './assets/export_kyp2.png';
-import CityBG from './assets/city_bg_long.png';
+import Kyp1 from '../../assets/export_kyp.png';
+import Kyp2 from '../../assets/export_kyp2.png';
 import $ from 'jquery';
+
+import './WalkingScene.css';
 
 class WalkingScene extends Component {
     constructor(props) {
@@ -49,25 +50,28 @@ class WalkingScene extends Component {
 
     render() { 
         var s = this.state.s;
+        /*
         $("#road").animate({
             left: "-=1000"
             // height: "toggle"
-          }, 20000, function() {
+          }, 150000, function() {
             // Animation complete.
-          });
+          });*/
         return(
-            <div>
-                <img id="road" style={{width: 'auto',height: '100%',top:'0px',left:'0px',position: 'absolute'}} src={CityBG}></img>
+            <div className="container">
+                {//<img className="sliding-background" id="road" style={{width: 'auto',height: '91%',top:'-2px',left:'0px',position: 'absolute'}} src={CityBG} alt="road"></img>}
+                }
+                <div className="sliding-background" />
                 { s === true ? (
                     <div>
-                        <img src={Kyp1} alt="kyp1" style={{width:'20%',height:'20%'}} />
+                        <img className="kypW" src={Kyp1} alt="kyp1" style={{width:'20%',height:'20%'}} />
                         {/* <p>
                         LampPostScene
                         </p> */}
                     </div>
                 ) : s === false ? (
                     <div>
-                        <img src={Kyp2} alt="kyp2" style={{width:'20%',height:'20%'}} />
+                        <img className="kypW" src={Kyp2} alt="kyp2" style={{width:'20%',height:'20%'}} />
                         {/* <p>
                         LampPostScene2
                         </p> */}
