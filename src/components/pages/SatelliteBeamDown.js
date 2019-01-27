@@ -16,6 +16,8 @@ class SatelliteBeamDown extends Component {
     render() {
       return (
         <div className="presentation-content">
+            <img src={require('../../assets/kyp_dropoff.png')} alt="logo" height="1366" />
+            {/* <img src={require('../../assets/kyp_dropoff_nokyp.png')} alt="logo" height="1366" /> */}
             <p>Satellite Beam Down</p>
         </div>
       )

@@ -16,7 +16,7 @@ class LightPostScene extends Component {
     render() {
       return (
         <div className="presentation-content">
-            <p>LightPostScene</p>
+            <img src={require('../../assets/new_kyp_streetlight.png')} alt="logo" height="1366" />
         </div>
       )
     }  

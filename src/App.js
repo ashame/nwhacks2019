@@ -28,17 +28,6 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    $(document).ready(function () {
-      var audioElement = document.createElement('audio');
-      audioElement.setAttribute('src', 'http://www.kozco.com/tech/piano2-CoolEdit.mp3');
-      audioElement.addEventListener('ended', function () {
-        this.play();
-      }, true);
-      audioElement.play();
-    });
-  }
-
   handleClick() {
     var page = this.state.page;
     var newPage = page + 1;
