@@ -15,28 +15,27 @@ class ProgressBarExample extends Component {
     if (this.state.percentage === 100)
       return
     this.setState({
-      percentage: this.state.percentage + 100/12
+      percentage: this.state.percentage + 100 / 12
       // percentage: this.state.percentage + 100/18
     })
     this.props.handleClick();
   }
 
   render() {
-    var pagesNoButton = [1,14,4,11,17];
-    var pagesNoButton = [1,4,14,17];;
+    var pagesNoButton = [1, 4, 14, 17];
     return (
       <div className="progressBar">
         <ProgressBar percentage={this.state.percentage} />
-        { !pagesNoButton.includes(this.props.page) ? (
-        <div>
-          <button
-            onClick={this.nextStep}
-            className="progressButton"
-          >
-            next
+        {!pagesNoButton.includes(this.props.page) ? (
+          <div>
+            <button
+              onClick={this.nextStep}
+              className="progressButton"
+            >
+              next
             </button>
-        </div>
-        ): null}
+          </div>
+        ) : null}
       </div>
     )
   }

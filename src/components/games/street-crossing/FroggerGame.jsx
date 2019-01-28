@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import InputManager from '../InputManager';
-import { default as Title, default as Finish } from '../GameText';
+import { default as Title } from '../GameText';
 import GameObject from '../GameObject';
 
 import './FroggerGame.css';
@@ -170,6 +170,7 @@ class FroggerGame extends Component {
         }
     }
 
+    
     repaint() {
         const keys = this.state.input.pressedKeys;
         const gameState = this.state.gameState;

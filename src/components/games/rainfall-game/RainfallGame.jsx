@@ -112,29 +112,20 @@ class RainfallGame extends Component {
     }
 
     checkCollision(o) {
-        let player = this.player;
-
-        let ox = o.pos.x;
-        let oy = o.pos.y;
-        let ow = o.poly.width;
-        let oh = o.poly.height;
-
-        let px = player.pos.x;
-        let py = player.pos.y;
-        let pw = player.poly.width;
-        let ph = player.poly.height;
-
-        if (ox >= px && ox + ow <= px + pw
-            && oy >= py && oy + oh <= py + ph) {
-            this.setState({
-                gameState: GameState.Finish,
-            })
-            const ctx = this.state.ctx;
-            ctx.clearRect(0, 0, WIDTH, HEIGHT);
-            return true;
-        } else {
-            return false;
-        }
+       const ctx = this.state.ctx;
+       let player = this.player;
+       for (let x = o.pos.x; x < o.pos.x + o.poly.width; x++) {
+           for (let y = o.pos.y; y < o.pos.y + o.poly.height; y++) {
+               if (player.getBoundingRectangle().contains(x, y)) {
+                   this.setState({
+                       gameState: GameState.Finish,
+                   })
+                   ctx.clearRect(0, 0, WIDTH, HEIGHT);
+                   return true;
+               }
+           }
+       }
+       return false;
     }
 
     handlePlayerMovement(keys) {
