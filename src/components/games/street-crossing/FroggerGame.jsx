@@ -18,6 +18,7 @@ const GameState = {
 }
 
 var level = 1;
+var attempts = 1;
 
 const colors = ["green", "cyan", "red"];
 
@@ -140,6 +141,7 @@ class FroggerGame extends Component {
        for (let x = o.pos.x; x < o.pos.x + o.poly.width; x++) {
            for (let y = o.pos.y; y < o.pos.y + o.poly.height; y++) {
                if (player.getBoundingRectangle().contains(x, y)) {
+                   attempts++;
                    this.setState({
                        gameState: GameState.Fail,
                        cars: [],
@@ -170,7 +172,7 @@ class FroggerGame extends Component {
         }
     }
 
-    
+
     repaint() {
         const keys = this.state.input.pressedKeys;
         const gameState = this.state.gameState;
@@ -232,6 +234,12 @@ class FroggerGame extends Component {
         }
 
         if ((gameState === GameState.Start || gameState === GameState.Fail) && keys.enter) {
+            if (attempts > 3) {
+                this.setState({
+                    gameState: GameState.Finish,
+                })
+                return;
+            }
             this.startGame();
         }
 
@@ -249,7 +257,7 @@ class FroggerGame extends Component {
                         backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
                     }}>
                     {this.state.gameState === GameState.Start && <Title title="Highway Crossing!" controls="Use arrow keys to move" msg="Press Enter to Start!" />}
-                    {this.state.gameState === GameState.Fail && <Title title="Game Over!" controls="Kyp got in an accident!" msg="Press Enter to try again!" />}
+                    {this.state.gameState === GameState.Fail ? attempts > 3 ? <Title title="It's Okay" controls="A shiny light leads you forward" msg="Press Enter to continue" /> : <Title title="Game Over!" controls="Kyp got in an accident!" msg="Press Enter to try again!" /> : true}
                     {this.state.gameState === GameState.Finish && this.props.handleClick()}
                     <canvas className="car-canvas" ref="carcanvas"
                         width={WIDTH} height={HEIGHT} />
